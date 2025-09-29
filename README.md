@@ -111,14 +111,12 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 ## 🔄 Control Structure
 
 * **Relay ON** when
-  `t ≤ setTemp − tempHys` **OR** `h ≥ setHum + humHys`
+  `t ≤ setTemp − tempHys` **AND** `h ≥ setHum + humHys`
 
 * **Relay OFF** when
   `t ≥ setTemp` **OR** `h ≤ setHum`
 
-* Otherwise (between bands), the relay **holds its last state**.
-
-**Beep policy:** No beeps on relay ON/OFF; buzzer is used for UI and errors.
+* Otherwise (between bands), the relay **holds its last state**
 
 ---
 
@@ -137,7 +135,7 @@ LiquidCrystal_I2C
 
 1. Install libraries via Arduino Library Manager.
 2. Select **Arduino Nano (ATmega328P)** in the IDE.
-3. Open the provided `.ino` file.
+3. Open the provided `main.ino` file.
 4. Compile & Upload.
 
 ### Customization
