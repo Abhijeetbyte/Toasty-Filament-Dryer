@@ -44,11 +44,11 @@ Adafruit_AHTX0 aht;                  // AHT21 sensor
 LiquidCrystal_I2C lcd(0x27, 20, 4);  // 20x4 LCD at addr 0x27
 
 // profile parameters (overwritten by loadProfile)
-float setTemp = 35.0;  // I use this as BOTH target and a hard ceiling for safety
-float setHum = 20.0;
+float setTemp = 35.0;  // target temperature (°C)
+float setHum = 20.0;   // target humidity (%RH)
 
 // separate hysteresis bands so temp and humidity don’t fight each other
-float tempHys = 1.5;  // °C band to avoid chatter
+float tempHys = 1.0;  // °C band to avoid chatter
 float humHys = 3.0;   // %RH band to avoid chatter
 
 // runtime control (user-visible timer; not a hard cutoff)
@@ -84,7 +84,7 @@ void loadProfile(int id) {
     setTemp = 45;
     setHum = 10;
     maxRunTime = 6UL * 60 * 60 * 1000UL;
-  }  // PLA ceiling ~45C
+  }  // PLA typical limit ~45C
   if (id == 2) {
     setTemp = 68;
     setHum = 10;
@@ -122,7 +122,7 @@ void loadProfile(int id) {
   }
 }
 
-// one-time sensor check — in steup()
+// one-time sensor check — in setup()
 void checkSensorOnceOrDie() {
   if (!aht.begin()) {
     Serial.println("ERROR: AHT21 not found at 0x38");
@@ -259,31 +259,26 @@ void runProfile(int id) {
   Serial.print(h);
   Serial.println(" %RH");
 
-  // safety ceiling: never allow temperature to cross setTemp (profile target)
-  bool temp_ceiling_hit = (t >= setTemp);
 
-  // improved control with separate hysteresis and a hard ceiling:
-  // ON  when (temp too low OR humidity too high) AND temp below ceiling
-  // OFF when (temp ok AND humidity ok) OR temp hits ceiling
-  if (relayState) {
-    bool temp_ok = (t >= (setTemp - tempHys));  // close enough to target from below
-    bool humid_ok = (h <= (setHum + humHys));   // within humidity target band
-    if ((temp_ok && humid_ok) || temp_ceiling_hit) {
-      relayState = false;
-      digitalWrite(relayPin, LOW);  // active-HIGH -> LOW = OFF
-     
-      Serial.println("Relay OFF (targets met or temp ceiling hit)");
-    }
-  } else {
-    bool temp_low = (t < (setTemp - tempHys));
-    bool humid_high = (h > (setHum + humHys));
-    if ((temp_low || humid_high) && !temp_ceiling_hit) {
-      relayState = true;
-      digitalWrite(relayPin, HIGH);  // active-HIGH -> HIGH = ON
-     
-      Serial.println("Relay ON (temp low OR humidity high, below ceiling)");
-    }
+  
+
+  // --------- SIMPLE, SEPARATE HYSTERESIS CONTROL ----------
+  // Relay OFF if: (t >= setTemp)  OR  (h <= setHum)          // safety-first
+  // Relay ON  if: (t <= setTemp - tempHys) AND (h >= setHum + humHys)
+
+  if ((t >= setTemp) || (h <= setHum)) {
+    relayState = false;
+    digitalWrite(relayPin, LOW);  // active-HIGH -> LOW = OFF
+    Serial.println("Relay OFF (temp >= setpoint OR humidity <= target)");
+  } else if ((t <= (setTemp - tempHys)) && (h >= (setHum + humHys))) {
+    relayState = true;
+    digitalWrite(relayPin, HIGH);  // active-HIGH -> HIGH = ON
+    Serial.println("Relay ON (temp below band AND humidity above band)");
   }
+
+
+
+
 
   unsigned long elapsed = millis() - startTime;
   unsigned long remaining = (elapsed >= maxRunTime) ? 0UL : (maxRunTime - elapsed);
@@ -298,7 +293,7 @@ void runProfile(int id) {
     lcd.print("Done (Hold): ");
     lcd.print(profileName(id));
     beep(150, 2, 120);  // beep unique
-    Serial.println("Profile timer done -> HOLD (relay ON))");
+    Serial.println("Profile timer done -> HOLD (relay continues as needed)");
   }
 }
 
@@ -325,7 +320,7 @@ void setup() {
   pinMode(relayPin, OUTPUT);
   pinMode(buzzerPin, OUTPUT);
 
-  //  all button pins  are external-pull down
+  //  all button pins are external-pull down
   pinMode(cancelPin, INPUT);
   pinMode(upPin, INPUT);
   pinMode(downPin, INPUT);
