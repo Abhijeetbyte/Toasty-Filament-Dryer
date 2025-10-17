@@ -1,6 +1,9 @@
-# Toasty-Filament-Dryer
+<p align="center">
+  <img src="device images/hero-img.jpg" alt="Toasty Filament Dryer" width="250">
+</p>
 
-### Toasty — Arduino-Powered Filament Dryer Controller
+<h1 align="center">Toasty Filament Dryer</h1>
+<h3 align="center">An Arduino powered 3D printer filament drying controller</h3>
 
 ## Description
 
