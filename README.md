@@ -83,7 +83,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 
 * 🔧 **Modification Instructions:**  
-  Watch the tutorial video by **Christopher Lum** for guidance on adapting and extending this code for physical modification in the food dehydrator setup.  
+  Watch the tutorial video by **Christopher Lum** for guidance on physical modification in the food dehydrator setup.  
 
   > 🎥 [YouTube – Christopher Lum: Turning a Food Dehydrator into a Filament Dryer](https://www.youtube.com/watch?v=nidkPN12M4I)) 
 
