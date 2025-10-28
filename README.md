@@ -50,16 +50,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 **LCD:** 20×4 I²C @ **0x27**
 **Power:** **5 V/2 A DC** (controller) + **220 V AC** (dehydrator heater/fan via relay)
 
-### ⚙️ Circuit Diagram / Schematics  
-
-📁 **File Path:** [`Open`](Circuit_Schematic.pdf)  
-
-## 🖥️ Arduino Code  
-
-📁 **File Path:** [`Open`](main.ino)
-
-
-
+---
 
 
 ### Pin Mapping
@@ -89,6 +80,12 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 * 5 V/2 A DC power supply (controller board)
 * Modified **220 V AC** food dehydrator (drying chamber)
 * Enclosure, wiring, terminal blocks, heat-shrink, etc.
+
+
+* 🔧 **Modification Instructions:**  
+  Watch the tutorial video by **Christopher Lum** for guidance on adapting and extending this code for physical modification in the food dehydrator setup.  
+
+  > 🎥 [YouTube – Christopher Lum: Turning a Food Dehydrator into a Filament Dryer](https://www.youtube.com/watch?v=nidkPN12M4I)) 
 
 ---
 
@@ -203,6 +200,20 @@ LiquidCrystal_I2C
 * If unsure, consult a qualified person.
 
 ---
+
+## File Download
+
+### ⚙️ Circuit Diagram / Schematics  
+
+📁 **File Path:** [`Open`](Circuit_Schematic.pdf)  
+
+## 🖥️ Arduino Code  
+
+📁 **File Path:** [`Open`](main.ino)
+
+---
+
+
 
 ## Reporting Issues & Contributions
 
