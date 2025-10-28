@@ -50,6 +50,18 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 **LCD:** 20×4 I²C @ **0x27**
 **Power:** **5 V/2 A DC** (controller) + **220 V AC** (dehydrator heater/fan via relay)
 
+### ⚙️ Circuit Diagram / Schematics  
+
+📁 **File Path:** [`Open`](Circuit_Schematic.pdf)  
+
+## 🖥️ Arduino Code  
+
+📁 **File Path:** [`Open`](main.ino)
+
+
+
+
+
 ### Pin Mapping
 
 | Function      | Pin   | Notes                                  |
@@ -152,14 +164,16 @@ LiquidCrystal_I2C
 
 ## 📐 Circuit Schematic
 
-> Add your schematic image (PNG/JPG) showing: **5 V/2 A DC**, **Relay IN**, **LCD I²C @ 0x27**, **AHT21 I²C @ 0x38**, **Buttons (external pull-downs)**, **Buzzer**.
-> Clearly separate **low-voltage** and **220 V AC** sections.
+<img width="570" height="400" alt="image" src="https://github.com/user-attachments/assets/ad3ba50e-b9e1-4646-bb30-19890a5fa1a0" />
 
----
 
 ## 📸 Images
 
-> Add photos of the assembled controller, dehydrator integration, LCD screens (Home, Menu, Run, Done/Hold), and wiring.
+<img width="420" height="400" alt="image" src="https://github.com/user-attachments/assets/51e9b04e-c7ac-436f-8f6b-b34c47683573" />
+<img width="450" height="370" alt="image" src="https://github.com/user-attachments/assets/a28cde18-25f6-4d38-bafe-fa18de0a5f75" />
+
+
+
 
 ---
 
@@ -199,6 +213,6 @@ Open **issues** and send **PRs** to improve docs, profiles, and wiring notes.
 ## 📜 License & Credits
 
 Copyright © 2025 Abhijeet Kumar.
-Licensed under **CC0-1.0** (see `LICENSE`).
+Licensed under **CC0-1.0** [`LICENSE`](LICENSE)
 
 Hardware/firmware by **Toasty** project. Library credits: **Adafruit AHTX0**, **LiquidCrystal_I2C**.
