@@ -35,11 +35,12 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 ## Features
 
 * **8 material profiles** (PLA, PETG/CPE/PCTG, ABS, ASA, TPU, Nylon, PC, PP).
-* **20×4 I²C LCD** status UI with centered error messages.
+* **20×4 I²C LCD** for better user interactions.
 * **Four buttons** (OK / UP / DOWN / CANCEL) with **external pull-downs** (pressed = HIGH).
-* **Active-HIGH relay** (no beeps on relay changes; buzzer for UI/errors).
+* **Relay** control for mains 
 * **Separate hysteresis** for temperature and humidity.
-* **User-visible timer**; when it ends, system enters **Hold Mode**.
+* **Timer on Screen**; when it ends, system enters **Hold Mode**.
+* **Simple UI** with buzzer feedback for each click for UI/errors).
 
 ---
 
@@ -48,7 +49,9 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 **Core:** Arduino Nano
 **Sensor:** AHT21 (Adafruit AHTX0) @ **I²C 0x38**
 **LCD:** 20×4 I²C @ **0x27**
-**Power:** **5 V/2 A DC** (controller) + **220 V AC** (dehydrator heater/fan via relay)
+**Relay Module** 
+**Power Supply** **5 V/2 A DC**
+**Food dehydrator** ( heater/fan )
 
 ---
 
@@ -110,7 +113,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 ## ⚙️ How It Works
 
-1. **Boot & Sensor Check** — Initializes AHT21 and LCD. If the sensor is missing, shows a centered **ERROR: AHT21 not found**, beeps, and locks out with the relay OFF.
+1. **Boot & Sensor Check** — Initializes AHT21 and LCD. If the sensor is missing, it shows a centered **ERROR: AHT21 not found**, beeps, and locks out with the relay OFF(NO state ). Prevents turning on the Food Dehydrater for Safety.
 2. **Home Screen** — Shows “Toasty Filament Dryer” and live **T/H** readings.
 3. **Profile Menu** — Press **OK** to open the selector (1–8). Navigate with **UP/DOWN**, **OK** to start, **CANCEL** to exit.
 4. **Run** — Control loop maintains setpoints using independent hysteresis for temperature and humidity.
@@ -197,7 +200,9 @@ LiquidCrystal_I2C
 * Enclose all mains parts; insulate and strain-relieve cables.
 * Use a relay module **rated** for your load with proper isolation/clearances.
 * Keep low-voltage and mains wiring **physically separated**.
+* Only load one filament type at a time—the type selected on the screen (e.g., High Temp or Low Temp). Mixing filament types can damage low-temperature filament due to excess heat.
 * If unsure, consult a qualified person.
+
 
 ---
 
@@ -207,7 +212,7 @@ LiquidCrystal_I2C
 
 📁 **File Path:** [`Open`](Circuit_Schematic.pdf)  
 
-## 🖥️ Arduino Code  
+##  Arduino Code  
 
 📁 **File Path:** [`Open`](main.ino)
 
