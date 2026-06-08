@@ -21,7 +21,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 ---
 
-## ✅ Benefits
+## Benefits
 
 * Reduces **stringing, bubbles, and warping** by removing moisture.
 * Extends the life of engineering filaments.
@@ -32,7 +32,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 ---
 
-## ✨ Features
+## Features
 
 * **8 material profiles** (PLA, PETG/CPE/PCTG, ABS, ASA, TPU, Nylon, PC, PP).
 * **20×4 I²C LCD** status UI with centered error messages.
@@ -43,7 +43,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 ---
 
-## 🔌 Hardware Overview
+## Hardware Overview
 
 **Core:** Arduino Nano
 **Sensor:** AHT21 (Adafruit AHTX0) @ **I²C 0x38**
@@ -69,7 +69,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 ---
 
-## 🧰 Bill of Materials (BOM)
+## Bill of Materials (BOM)
 
 * Arduino Nano (or compatible)
 * AHT21 sensor module (Adafruit AHTX0 compatible)
@@ -85,11 +85,11 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 * 🔧 **Modification Instructions:**  
   Watch the tutorial video by **Christopher Lum** for guidance on physical modification in the food dehydrator setup.  
 
-  > 🎥 [YouTube – Christopher Lum: Turning a Food Dehydrator into a Filament Dryer](https://www.youtube.com/watch?v=nidkPN12M4I)) 
+  >  [YouTube – Christopher Lum: Turning a Food Dehydrator into a Filament Dryer](https://www.youtube.com/watch?v=nidkPN12M4I)) 
 
 ---
 
-## 📋 Supported Filament Profiles
+##  Supported Filament Profiles
 
 | ID | Filament           | Set Temp (°C) | Target RH (%) | Max Run Time |
 | -- | ------------------ | ------------- | ------------- | ------------ |
@@ -120,7 +120,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 ---
 
-## 🔄 Control Structure
+##  Control Structure
 
 * **Relay ON** when
   `t ≤ setTemp − tempHys` **AND** `h ≥ setHum + humHys`
@@ -132,7 +132,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 ---
 
-## 🖥️ Software
+##  Software
 
 **Language:** Arduino C++
 **Libraries:**
@@ -159,12 +159,12 @@ LiquidCrystal_I2C
 
 ---
 
-## 📐 Circuit Schematic
+##  Circuit Schematic
 
 <img width="570" height="400" alt="image" src="https://github.com/user-attachments/assets/ad3ba50e-b9e1-4646-bb30-19890a5fa1a0" />
 
 
-## 📸 Images
+##  Images
 
 <img width="420" height="400" alt="image" src="https://github.com/user-attachments/assets/51e9b04e-c7ac-436f-8f6b-b34c47683573" />
 <img width="450" height="370" alt="image" src="https://github.com/user-attachments/assets/a28cde18-25f6-4d38-bafe-fa18de0a5f75" />
@@ -174,7 +174,7 @@ LiquidCrystal_I2C
 
 ---
 
-## 🧪 Operation Tips
+##  Operation Tips
 
 * **PLA:** Default **Set Temp = 45 °C**. If your unit overshoots, reduce the setpoint or improve airflow.
 * **Nylon/PC:** High temps—confirm your dehydrator/enclosure can handle them safely.
@@ -182,7 +182,7 @@ LiquidCrystal_I2C
 
 ---
 
-## 🛠️ Troubleshooting
+##  Troubleshooting
 
 * **AHT21 not found:** Check I²C wiring (SDA=A4, SCL=A5), address, power, and module pull-ups.
 * **Relay always ON/OFF:** Verify **active-HIGH** wiring, pin **D7**, and thresholds.
@@ -191,7 +191,7 @@ LiquidCrystal_I2C
 
 ---
 
-## ⚠️ Safety Note (Mains)
+##  Safety Note (Mains)
 
 * The dehydrator’s heater/fan is **220 V AC**. Disconnect power before wiring.
 * Enclose all mains parts; insulate and strain-relieve cables.
@@ -203,7 +203,7 @@ LiquidCrystal_I2C
 
 ## File Download
 
-### ⚙️ Circuit Diagram / Schematics  
+###  Circuit Diagram / Schematics  
 
 📁 **File Path:** [`Open`](Circuit_Schematic.pdf)  
 
@@ -217,13 +217,17 @@ LiquidCrystal_I2C
 
 ## Reporting Issues & Contributions
 
-Open **issues** and send **PRs** to improve docs, profiles, and wiring notes.
+Open **issues** and send **PRs** to improve docs, Temp profiles, and wiring notes.
+
+And feel free to give a **Star** to the repo...
 
 ---
 
-## 📜 License & Credits
+##  License & Credits
 
 Copyright © 2025 Abhijeet Kumar.
 Licensed under **CC0-1.0** [`LICENSE`](LICENSE)
 
 Hardware/firmware by **Toasty** project. Library credits: **Adafruit AHTX0**, **LiquidCrystal_I2C**.
+
+
