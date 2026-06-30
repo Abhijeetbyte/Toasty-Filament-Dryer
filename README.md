@@ -23,7 +23,7 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 
 ## Benefits
 
-* Reduces **stringing, bubbles, and warping** by removing moisture.
+* Reduces **stringing, bubbles, and warping** by removing moisture in Hygroscopic filaments.
 * Extends the life of engineering filaments.
 * Reuses a **modified 220 V AC dehydrator** as the drying chamber.
 * Controller runs on a **safe 5 V/2 A DC** supply, isolated from mains.
@@ -31,6 +31,25 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 * Buildable with **intermediate → beginner** electronics skills.
 
 ---
+  
+
+## Limitations
+
+- This tool is designed for **standard 3D printing filaments**. Some filament manufacturers use proprietary blends or modified materials, so the actual properties may differ from the standard material behavior. Results should be treated as estimates.
+
+
+- **Hydrolysis** is a moisture-driven chemical degradation process where water breaks down the polymer chains of filaments. Unlike simple drying, hydrolysis damage is usually permanent and cannot be fully reversed.
+
+- **Filament crazing / brittleness** occurs when filament absorbs moisture, ages, or is exposed to unsuitable environmental conditions. The material becomes stiff and fragile, and may crack or snap easily. This often happens because the filament retains stress from its original coiled shape and develops weak points when straightened during feeding into the printer.
+
+- **Drying vs Annealing:** If the filament condition is unknown, annealing may sometimes be considered instead of only drying. However, annealing and drying solve different problems:
+  - **Drying** removes absorbed moisture from the filament.
+  - **Annealing** changes the internal structure of the printed part by applying controlled heat, improving properties such as strength and heat resistance.
+
+  Choose the correct process based on the filament type and its condition.
+---
+
+
 
 ## Features
 
@@ -112,6 +131,8 @@ It uses an **AHT21 temperature/humidity sensor**, a **20×4 I²C LCD**, **four p
 ---
 
 ## ⚙️ How It Works
+
+Hot air increases the evaporation of water from the filament. Moving air carries the water vapor away, keeping the surrounding air from becoming saturated. This maintains a low water vapor partial pressure (or low relative humidity around the filament), allowing more moisture to diffuse out of the filament.
 
 1. **Boot & Sensor Check** — Initializes AHT21 and LCD. If the sensor is missing, it shows a centered **ERROR: AHT21 not found**, beeps, and locks out with the relay OFF(NO state ). Prevents turning on the Food Dehydrater for Safety.
 2. **Home Screen** — Shows “Toasty Filament Dryer” and live **T/H** readings.
